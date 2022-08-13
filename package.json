@@ -1,24 +1,13 @@
 {
-  "name": "begin-app",
+  "name": "hello-world",
   "version": "0.0.0",
   "description": "Begin basic Hello World! app for Node",
-  "arc": {
-    "app": "hello-world",
-    "http": [
-      {
-        "/": {
-          "method": "any",
-          "src": "."
-        }
-      }
-    ]
-  },
   "scripts": {
     "start": "cross-env NODE_ENV=testing npx sandbox"
   },
   "devDependencies": {
-    "@architect/functions": "latest",
-    "@architect/sandbox": "^5.0.0",
+    "@architect/functions": "^3.13.5",
+    "@architect/sandbox": "^4.4.1",
     "@begin/data": "latest",
     "cross-env": "^7.0.3"
   }
