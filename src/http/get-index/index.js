@@ -1,20 +1,14 @@
 const arc = require('@architect/functions')
-const axios = require('axios')
+
 
 exports.handler = arc.http.async(index)
 
 
 async function index(req) {
 
-  const apiUrl = `https://www.goodreads.com/search.xml?key=RDfV4oPehM6jNhxfNQzzQ&q=Ender%27s+Game`
-  
-  let good = await axios.get(apiUrl)
-  .then(function (response) {
-    // handle success
-    console.log(response.data);
-  })
-
-
+  // When search term is input into frontend,term is sent to post-search function to pull data from api. 
+  // Data is then converted from xml to json within function.
+  // JSON is sent back to display on index
 
   let body = `
     <!DOCTYPE html>
@@ -28,18 +22,19 @@ async function index(req) {
       </style>
     </head>
     <body>
-    <div>
-      <!-- You may use this form for your search box -->
-      <form action="${apiUrl}" method="post">
-        <input />
-        <button type="submit">Search</button>
-      </form>
-      
-      <!-- You may use this container for your listing -->
       <div>
+        <!-- You may use this form for your search box -->
+        <form action="/search" method="POST">
+          <label for="search"><b>search: </b></label>
+          <input type="text" placeholder="search">
+          <button type="submit">Search</button>
+        </form>
         
+        <!-- You may use this container for your listing -->
+        <div>
+        
+        </div>
       </div>
-    </div>
     </body>
     </html>
   `
