@@ -26,7 +26,7 @@ async function index(req) {
         <!-- You may use this form for your search box -->
         <form action="/search" method="POST">
           <label for="search"><b>search: </b></label>
-          <input type="text" placeholder="search">
+          <input type="text" name="search">
           <button type="submit">Search</button>
         </form>
         
@@ -44,6 +44,7 @@ return {
     'cache-control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0',
     'content-type': 'text/html; charset=utf8'
   },
+  term: req.session.term,
   body
   }
 }

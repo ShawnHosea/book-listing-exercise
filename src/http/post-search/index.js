@@ -4,11 +4,16 @@ const axios = require('axios')
 const xml2js = require('xml2js');
 const parseString = require('xml2js').parseString;
 
+  // When search term is input into frontend,term is sent to post-search function to pull data from api. 
+  // Data is then converted from xml to json within function.
+  // JSON is sent back to display on index
+
 exports.handler = arc.http.async(search)
 
 async function search(req) {
+  // console.log(req.body.search)
 
-  const apiUrl = `https://www.goodreads.com/search.xml?key=RDfV4oPehM6jNhxfNQzzQ&q=Ender%27s+Game`
+  const apiUrl = `https://www.goodreads.com/search.xml?key=RDfV4oPehM6jNhxfNQzzQ&q=${req.body.search}`
   // const search = `https://goodreads-server-express--dotdash.repl.co/search/${term}`;
 
 
@@ -18,15 +23,9 @@ async function search(req) {
     parseString(response.data, function (err, result) {
       let data = JSON.stringify(result)
       console.log(data)
-      return data
     });
   })
    
-
-  
-  // When search term is input into frontend,term is sent to post-search function to pull data from api. 
-  // Data is then converted from xml to json within function.
-  // JSON is sent back to display on index
 
 return {
   statusCode: 200,
