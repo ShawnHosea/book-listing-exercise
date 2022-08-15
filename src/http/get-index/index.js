@@ -15,7 +15,7 @@ async function index(req) {
     <div class="">
       <div class="wrapper">
         <form action="/search" method="get">
-          <input class="input" type="text" name="search">
+          <input class="input" type="text" name="search" required>
           <button class="btn" type="submit">Search</button>
         </form>
       </div>

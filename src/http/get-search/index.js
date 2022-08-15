@@ -19,20 +19,24 @@ async function search(req) {
 
   let bookData = convert.GoodreadsResponse.search[0].results[0].work
 
-  let books = bookData.map(book => ({
-    book:book.best_book[0].image_url
-  }))
-  // console.log(books)
-
-
 let body = Layout({  
   content:`
 <div class="bookCase m3">
-  <div class="grid col-3 gap3">
+  <div class="grid-lg col-3 gap3">
     ${bookData.map(book =>` 
-    <div>
+    <div class="mb0-lg
+    mb4
+    bg-p1
+    p2
+    radius1
+    shadow-card
+    object-contain
+    transform-scale-hover
+    transform-scale-active
+    transition-transform
+    relative">
       <img src="${book.best_book[0].image_url}"/>
-      <h3>${book.best_book[0].title}</h3>
+      <h3 class="text0">${`${book.best_book[0].title}`.slice(0, 50) + `<small class="text-2"> [...]</small>`}</h3>
       <p>${book.best_book[0].author[0].name}</p>
     </div>
     ` ).join('')}
