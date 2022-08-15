@@ -1,8 +1,8 @@
 const arc = require('@architect/functions')
+const Layout = require('@architect/views/layout.js')
 
 
 exports.handler = arc.http.async(index)
-
 
 async function index(req) {
 
@@ -10,41 +10,24 @@ async function index(req) {
   // Data is then converted from xml to json within function.
   // JSON is sent back to display on index
 
-  let body = `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Architect</title>
-      <style>
-    
-      </style>
-    </head>
-    <body>
-      <div>
-        <!-- You may use this form for your search box -->
+  let body = Layout({  
+    content: `
+    <div class="">
+      <div class="wrapper">
         <form action="/search" method="POST">
-          <label for="search"><b>search: </b></label>
-          <input type="text" name="search">
-          <button type="submit">Search</button>
+          <input class="input" type="text" name="search">
+          <button class="btn" type="submit">Search</button>
         </form>
-        
-        <!-- You may use this container for your listing -->
-        <div>
-        
-        </div>
       </div>
-    </body>
-    </html>
-  `
+    </div>
+  `})
+
 return {
   statusCode: 200,
   headers: {
     'cache-control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0',
     'content-type': 'text/html; charset=utf8'
   },
-  term: req.session.term,
   body
   }
 }
