@@ -7,7 +7,7 @@
   },
   "devDependencies": {
     "@architect/functions": "latest",
-    "@architect/sandbox": "^latest",
+    "@architect/sandbox": "latest",
     "@begin/data": "latest",
     "cross-env": "^7.0.3"
   }
