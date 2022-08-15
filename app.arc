@@ -6,5 +6,4 @@ folder public
 
 @http
 get /
-
-post /search
+get /search

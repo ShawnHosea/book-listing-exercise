@@ -28,17 +28,15 @@
   transform: translateY(-9px);
 }
 
-/* Header Nav */
-  
-.logo {
-  height: 1.5rem;
-}
-
-
-
 .input {
   padding: .6rem;
   box-shadow: none;
   border: 1px solid #cecece;
   border-radius:4px;
+}
+
+/* bookCase */
+
+.bookCase {
+  
 }

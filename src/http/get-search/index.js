@@ -1,18 +1,13 @@
 const arc = require('@architect/functions')
-const fs = require('fs');
+const Layout = require('@architect/views/layout.js')
 const axios = require('axios')
 const { parseStringPromise } = require('xml2js')
-
-// use promise to get data out of parse function
-// create layout book cards from json.
-// ?? figure out how to fix location redirect so that it goes back to index
 
 exports.handler = arc.http.async(search)
 
 async function search(req) {
-  // console.log(req)
-
-  const apiUrl = `https://www.goodreads.com/search.xml?key=RDfV4oPehM6jNhxfNQzzQ&q=${req.body.search}`
+// console.log(req)
+  const apiUrl = `https://www.goodreads.com/search.xml?key=RDfV4oPehM6jNhxfNQzzQ&q=${req.query.search}`
 
   let xmlInput = await axios.get(apiUrl)
   .then(function (response) {
@@ -22,25 +17,28 @@ async function search(req) {
   let convert = await parseStringPromise(xmlInput);
         convert = (JSON.parse(JSON.stringify(convert)));
 
-  // let convert = await parseStringPromise(xmlInput);
-  //       convert = ((JSON.stringify(convert)));
-
   let bookData = convert.GoodreadsResponse.search[0].results[0].work
 
   let books = bookData.map(book => ({
-    book:book, id:book.id[0]
+    book:book.best_book[0].image_url
   }))
-
   console.log(books)
-  // console.log(convert.GoodreadsResponse.search[0].results[0].work)
 
-  let averageRating = convert.GoodreadsResponse.search[0].results[0].work[0].average_rating
 
-let body = `
-<div>
-  <p>${books}</p>
+let body = Layout({  
+  content:`
+<div class="bookCase m3">
+  <div class="grid col-3 gap3">
+    ${bookData.map(book =>` 
+    <div>
+      <img src="${book.best_book[0].image_url}"/>
+      <h3>${book.best_book[0].title}</h3>
+      <p>${book.best_book[0].author[0].name}</p>
+    </div>
+    ` ).join('')}
+  </div>
 </div>
-`
+`})
 
 return {
   statusCode: 200,

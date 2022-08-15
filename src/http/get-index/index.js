@@ -14,7 +14,7 @@ async function index(req) {
     content: `
     <div class="">
       <div class="wrapper">
-        <form action="/search" method="POST">
+        <form action="/search" method="get">
           <input class="input" type="text" name="search">
           <button class="btn" type="submit">Search</button>
         </form>
@@ -28,6 +28,6 @@ return {
     'cache-control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0',
     'content-type': 'text/html; charset=utf8'
   },
-  body
+  body,
   }
 }
