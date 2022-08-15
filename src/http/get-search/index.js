@@ -22,7 +22,7 @@ async function search(req) {
   let books = bookData.map(book => ({
     book:book.best_book[0].image_url
   }))
-  console.log(books)
+  // console.log(books)
 
 
 let body = Layout({  
